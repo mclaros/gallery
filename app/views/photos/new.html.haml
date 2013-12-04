@@ -1,0 +1,30 @@
+%h1 New Photo
+
+%form{:action => "#{photos_url}", :method => "POST"}
+	%input{:type=>"hidden", :name => "authenticity_token", :value => "form_autheticity_token"}
+	
+	%label{:for => "photo-title"}
+		Title
+		%br
+		%input#photo-title{:type => "text", :name => "photo[title]"}
+	
+	%br
+	
+	%label{:for => "photo-description"}
+		Description
+		%br
+		%input#photo-description{:type => "text", :name => "photo[description]"}
+
+	%br
+
+	%label{:for => "photo-gallery"}
+		Gallery
+		%br
+		%select#photo-gallery{:name => "photo[photo_gallery_id]"}
+			%option
+			- @galleries.each do |gallery|
+				%option{:value => "#{gallery.id}"}= gallery.title
+
+		%br
+
+	%input{:type => "submit"}

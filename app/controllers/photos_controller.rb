@@ -10,11 +10,18 @@ class PhotosController < ApplicationController
 	end
 
 	def new
-
+		@galleries = PhotoGallery.all
+		render :new
 	end
 
 	def create
+		@photo = Photo.new(params[:photo])
 
+		if @photo.save
+			render :json => @photo
+		else
+			redirect_to new_photo_url
+		end
 	end
 
 	def edit

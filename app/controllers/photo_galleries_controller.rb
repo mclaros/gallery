@@ -17,9 +17,9 @@ class PhotoGalleriesController < ApplicationController
 		@gallery = PhotoGallery.new(params[:photo_gallery])
 
 		if @gallery.save
-			redirect_to :index
+			redirect_to photo_galleries_url
 		else
-			redirect_to :new
+			redirect_to new_photo_gallery_url
 		end
 	end
 
