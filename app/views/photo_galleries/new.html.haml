@@ -1,0 +1,16 @@
+%h1 New Photo Gallery
+
+%form{:action => "#{photo_galleries_url}", :method => "POST"}
+	%input{:type => "hidden", :name => "authenticity_token", :value => "#{form_authenticity_token}"}
+	
+	%label{:for => "gallery-title"}
+		Title
+		%br
+		%input#gallery-title{:type => "text", :name => "photo_gallery[title]"}
+	%br	
+	%label{:for => "gallery-description"}
+		Description
+		%br
+		%input#gallery-description{:type => "text", :name => "photo_gallery[description]"}
+	%br
+	%input{:type => "submit"}
