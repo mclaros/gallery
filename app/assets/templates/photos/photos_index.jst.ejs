@@ -1,0 +1,9 @@
+<h3>Photos</h3>
+
+<ul>
+<% photos.each(function (photo) { %>
+	<li>
+		<%= photo.escape("title") %>
+	</li>
+<% }) %>
+</ul>

@@ -7,6 +7,12 @@ Gallery.Views.GalleryShow = Backbone.View.extend({
 		});
 
 		this.$el.html(renderedTemp);
+
+		var photosIndex = new Gallery.Views.PhotosIndex({
+			this.get("photos")
+		});
+		this.$el.find("#photos-container").html(PhotosIndex.render().$el);
+
 		return this;
 	}
 });
