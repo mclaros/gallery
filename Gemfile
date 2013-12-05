@@ -7,7 +7,11 @@ gem 'rails', '3.2.14'
 
 gem 'pg'
 
-
+group :development do
+	gem 'better_errors'
+	gem 'binding_of_caller'
+	gem 'rails-erd'
+end
 
 
 # Gems used only for assets and not required
@@ -23,9 +27,13 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'underscore-rails'
 gem 'backbone-on-rails'
 gem 'haml'
+gem 'ejs'
 gem 'figaro'
+gem 'rmagick', :require => "RMagick"
+gem 'paperclip'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
