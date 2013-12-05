@@ -34,4 +34,15 @@ Gallery::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV["DEV_BUCKET_NAME"],
+      :access_key_id => ENV["DEV_ACCESS_KEY_ID"],
+      :secret_access_key => ENV["DEV_SECRET_ACCESS_KEY"],
+      :s3_host_name => ENV["DEV_HOST_NAME"]
+    }
+  }
+
 end
