@@ -1,5 +1,5 @@
 Gallery.Views.GalleriesIndex = Backbone.View.extend({
-	template: JST["galleries_index"],
+	template: JST["photo_galleries/galleries_index"],
 
 	render: function () {
 		var renderedTemp = this.template({

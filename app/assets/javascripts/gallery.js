@@ -4,13 +4,11 @@ window.Gallery = {
   Views: {},
   Routers: {},
   initialize: function(options) {
-  	this.$rootEl = options.$rootEl
+  	var $rootEl = options.$rootEl
     this.PhotoGalleries = new Gallery.Collections.PhotoGalleries();
-    var galleryRouter = new Gallery.Routers.galleryRouter();
+    var galleryRouter = new Gallery.Routers.GalleryRouter({
+    	$rootEl: $rootEl
+    });
     Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  Gallery.initialize();
-});

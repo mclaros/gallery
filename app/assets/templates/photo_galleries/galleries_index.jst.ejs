@@ -1,0 +1,8 @@
+<h2>Galleries Index</h2>
+
+<ul>
+<% galleries.each(function (gallery) { %>
+	<li><%= gallery.escape("title") %></li>
+
+<% }) %>
+</ul>

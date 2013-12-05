@@ -1,4 +1,4 @@
-Gallery.GalleryRouter = Backbone.Router.extend({
+Gallery.Routers.GalleryRouter = Backbone.Router.extend({
 	initialize: function (options) {
 		this.$rootEl = options.$rootEl
 	},
@@ -14,8 +14,8 @@ Gallery.GalleryRouter = Backbone.Router.extend({
 					collection: Gallery.PhotoGalleries
 				});
 
-				debugger
-			},
+				this._swapView(galleriesIndex);
+			}.bind(this),
 
 			error: function (collection, response, options) {
 				console.log("collection is");
@@ -31,7 +31,7 @@ Gallery.GalleryRouter = Backbone.Router.extend({
 	_swapView: function (newView) {
 		this._currentView && this._currentView.remove();
 		this._currentView = newView;
-		this.$rootEl.html(this._currentView);
+		this.$rootEl.html(this._currentView.render().$el);
 	}
 
 });

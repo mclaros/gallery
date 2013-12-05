@@ -1,3 +1,9 @@
+%script{:type => "text/javascript"}
+	$(document).ready(function(){
+	var $contentContainer = $("#content");
+	Gallery.initialize({ $rootEl: $contentContainer });
+	});	
+
 %h1 Root Static Page
 
-%#content
+#content
