@@ -4,7 +4,10 @@ Gallery.Routers.GalleryRouter = Backbone.Router.extend({
 	},
 
 	routes: {
-		"": "renderGalleriesIndex"
+		"": "renderGalleriesIndex",
+		"galleries": "renderGalleriesIndex",
+		"galleries/new": "renderNewGallery",
+		"galleries/:id": "renderGalleryShow"
 	},
 
 	renderGalleriesIndex: function () {
@@ -26,6 +29,20 @@ Gallery.Routers.GalleryRouter = Backbone.Router.extend({
 				console.log(options);
 			}
 		})
+	},
+
+	renderGalleryShow: function (id) {
+		//this will fail if you try to access show page directly, without fetching at index
+		var gallery = Gallery.PhotoGalleries.get(id);
+		var galleryShow = new Gallery.Views.GalleryShow({
+			model: gallery
+		});
+		this._swapView(galleryShow);
+	},
+
+	renderNewGallery: function () {
+		var newGallery = new Gallery.Views.NewGallery();
+		this._swapView(newGallery);
 	},
 
 	_swapView: function (newView) {

@@ -1,8 +1,14 @@
 <h2>Galleries Index</h2>
 
+<a href="#/galleries/new">New Gallery</a>
+
 <ul>
 <% galleries.each(function (gallery) { %>
-	<li><%= gallery.escape("title") %></li>
+	<li>
+		<a href="#/galleries/<%= gallery.id %>">
+		<%= gallery.escape("title") %>
+		</a>
+	</li>
 
 <% }) %>
 </ul>
