@@ -7,4 +7,11 @@ class PhotoGallery < ActiveRecord::Base
 
   has_many :photos,
   		:inverse_of => :photo_gallery
+
+  has_attached_file :gallery_img, :styles => {
+  	:default_url => "https://s3-us-west-1.amazonaws.com/gallery-development/End-of-Watch+blinkbox.jpg"
+  	:big => "500x500>",
+  	:medium => "300x300>",
+  	:small => "150x150>"
+  }
 end
