@@ -9,7 +9,7 @@ Gallery.Views.GalleryShow = Backbone.View.extend({
 		this.$el.html(renderedTemp);
 
 		var photosIndex = new Gallery.Views.PhotosIndex({
-			this.get("photos")
+			photos: this.get("photos")
 		});
 		this.$el.find("#photos-container").html(PhotosIndex.render().$el);
 
