@@ -19,27 +19,28 @@ Gallery.Views.NewGallery = Backbone.View.extend({
 
 	previewImg: function (imgInput) {
 		if (imgInput.files && imgInput.files[0]) {
+			var that = this;
 			var reader = new FileReader();
 			reader.onload = function (e) {
 				var $imgPreviews = $(".img-preview");
 				$imgPreviews.attr("src", e.target.result)
-				this.maintainAspectRatio($imgPreviews);
-			}.bind(this);
+				that.maintainAspectRatio($imgPreviews);
+			};
 			reader.readAsDataURL(imgInput.files[0]);
 		}
 	},
 
-	maintainAspectRatio: function ($imgPreviewsArr) {
-		$imgPreviewsArr.each(function (idx, imgPreview) {
-			var $imgPreview = $(imgPreview);
-			var heightStr = $imgPreview.css("height");
-			var widthStr = $imgPreview.css("width");
-			var height = parseInt(heightStr.substring(0, heightStr.length - 2));
-			var width = parseInt(widthStr.substring(0, widthStr.length - 2));
-			var largerAspect = height > width ? "height" : "width";
-			var smallerAspect = height > width ? "width" : "height";
-			$imgPreview.css(largerAspect, "100%");
-			$imgPreview.css(smallerAspect, "auto");
+	maintainAspectRatio: function ($imgPreviews) {
+		$imgPreviews.css({
+			"height": "auto",
+			"width": "auto"
 		});
+
+		var heightStr = $imgPreviews.css("height");
+		var widthStr = $imgPreviews.css("width");
+		var height = parseInt(heightStr.substring(0, heightStr.length - 2));
+		var width = parseInt(widthStr.substring(0, widthStr.length - 2));
+		var largerAspect = height > width ? "height" : "width";
+		$imgPreviews.css(largerAspect, "100%");
 	}
 });
