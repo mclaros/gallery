@@ -1,5 +1,5 @@
 class PhotoGallery < ActiveRecord::Base
-  attr_accessible :description, :title
+  attr_accessible :description, :title, :gallery_img
 
   validates_presence_of :title
   validates_length_of :title, :maximum => 75
