@@ -15,12 +15,17 @@ class PhotosController < ApplicationController
 	end
 
 	def create
-		@photo = Photo.new(params[:photo])
+		@parent_gallery = PhotoGallery.find(params[:photo_gallery_id])
+		photo_titles, photo_descrips = params[:photo].values
+		photo_data_sets = photo_titles.zip(photo_descrips)
+		photo_data_sets.each do |title, description|
+			@parent_gallery.photos.new(title: title, description: description)
+		end
 
-		if @photo.save
-			render :json => @photo
+		if @parent_gallerys.save
+			render :json => @parent_gallery
 		else
-			redirect_to new_photo_url
+			render :json => @parent_gallery.errors.full_messages.to_json
 		end
 	end
 

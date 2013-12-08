@@ -29,13 +29,19 @@ Gallery.Views.Upload = Backbone.View.extend({
 			var reader = new FileReader();
 
 			reader.onload = function (e) {
-				var $imgPreview = $(imgInput).parent().parent().find(".img-preview");
+				var $photoFormContainer = $(imgInput).parent().parent();
+				var $imgPreview = $photoFormContainer.find(".img-preview");
 				$imgPreview.attr("src", e.target.result)
 				that.maintainAspectRatio($imgPreview);
 				that.maintainVertCenter($imgPreview);
 			};
 
 			reader.readAsDataURL(imgInput.files[0]);
+		}
+		else {
+			var $imgInputContainer = $(imgInput).parent().parent();
+			var $imgPreview = $imgInputContainer.find(".img-preview");
+			$imgPreview.attr("src", "");
 		}
 	},
 
