@@ -7,7 +7,9 @@ Gallery.Routers.GalleryRouter = Backbone.Router.extend({
 		"": "renderGalleriesIndex",
 		"galleries": "renderGalleriesIndex",
 		"galleries/new": "renderNewGallery",
-		"galleries/:id": "renderGalleryShow"
+		"galleries/:id": "renderGalleryShow",
+		"test/upload": "renderTestUpload",
+		"*route": "renderNotFound"
 	},
 
 	renderGalleriesIndex: function () {
@@ -43,6 +45,18 @@ Gallery.Routers.GalleryRouter = Backbone.Router.extend({
 	renderNewGallery: function () {
 		var newGallery = new Gallery.Views.NewGallery();
 		this._swapView(newGallery);
+	},
+
+	renderTestUpload: function () {
+		var upload = new Gallery.Views.Upload();
+		this._swapView(upload);
+	},
+
+	renderNotFound: function (url) {
+		var notFound = new Gallery.Views.NotFound({
+			invalidURL: url
+		});
+		this._swapView(notFound);
 	},
 
 	_swapView: function (newView) {
