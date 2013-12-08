@@ -6,7 +6,7 @@
 		TEMP: Photo Gallery
 		<input type="text" name="photo_gallery_id">
 	</label>
-	<div style="border: 1px solid black;">
+	<div class="upload-div" style="border: 1px solid black;">
 		<h3>New Photo</h3>
 		<div style="height: 150px; width: 150px; border: 1px solid gray; background-color: lightgray">
 			<img class="img-preview" style="display: block; max-height: 100%; max-width: 100%; height: auto; width: auto; margin-left: auto; margin-right: auto;" src="">
@@ -27,10 +27,10 @@
 
 </form>
 
-<button type="button" id ="add-file-input">More Photos</button>
+<button type="button" id="add-file-input" disabled>More Photos</button>
 
 
-<div id="upload-proto" style="border: 1px solid black; display: none;">
+<div id="upload-proto" class="upload-div" style="border: 1px solid black; display: none;">
 	<h3>New Photo</h3>
 	<div style="height: 150px; width: 150px; border: 1px solid gray; background-color: lightgray">
 		<img class="img-preview" style="display: block; max-height: 100%; max-width: 100%; height: auto; width: auto; margin-left: auto; margin-right: auto;" src="">

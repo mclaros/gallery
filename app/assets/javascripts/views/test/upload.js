@@ -19,6 +19,22 @@ Gallery.Views.Upload = Backbone.View.extend({
 		newInput.attr("id", "");
 		newInput.fadeIn();
 		$("#upload-test-form").append(newInput);
+		this.validateAddInput();
+	},
+
+	compareImgUploads: function () {
+		var $imgInputDivs = $(".upload-div");
+		var imgFormCount = $imgInputDivs.length - 1; //discount proto div
+		var imgUploadsCount = 0;
+
+		$imgInputDivs.each(function (idx, imgInputDiv) {
+			var $imgPreview = $(imgInputDiv).find(".img-preview");
+			var srcValue = $imgPreview.attr("src");
+			if ( !_.isUndefined(srcValue) && srcValue != "") {
+				imgUploadsCount += 1;
+			} 
+		});
+		return imgFormCount == imgUploadsCount;
 	},
 
 	previewImg: function (evt) {
@@ -31,9 +47,10 @@ Gallery.Views.Upload = Backbone.View.extend({
 			reader.onload = function (e) {
 				var $photoFormContainer = $(imgInput).parent().parent();
 				var $imgPreview = $photoFormContainer.find(".img-preview");
-				$imgPreview.attr("src", e.target.result)
+				$imgPreview.attr("src", e.target.result);
 				that.maintainAspectRatio($imgPreview);
 				that.maintainVertCenter($imgPreview);
+				that.validateAddInput();
 			};
 
 			reader.readAsDataURL(imgInput.files[0]);
@@ -42,6 +59,7 @@ Gallery.Views.Upload = Backbone.View.extend({
 			var $imgInputContainer = $(imgInput).parent().parent();
 			var $imgPreview = $imgInputContainer.find(".img-preview");
 			$imgPreview.attr("src", "");
+			this.validateAddInput();
 		}
 	},
 
@@ -78,5 +96,14 @@ Gallery.Views.Upload = Backbone.View.extend({
 	getWidth: function ($el) {
 		var widthStr = $el.css("width");
 		return parseInt(widthStr.substring(0, widthStr.length - 2));
+	},
+
+	validateAddInput: function () {
+		if (this.compareImgUploads()) {
+			$("#add-file-input").attr("disabled", false);
+		}
+		else {
+			$("#add-file-input").attr("disabled", true);
+		}
 	}
 });
